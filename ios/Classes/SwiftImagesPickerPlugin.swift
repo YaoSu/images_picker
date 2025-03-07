@@ -56,7 +56,14 @@ public class SwiftImagesPickerPlugin: NSObject, FlutterPlugin {
       
       self.setThemeColor(configuration: config, colors: theme);
       
-      ac.selectImageBlock = { (images, assets, isOriginal) in
+      ac.selectImageBlock = { (results, isOriginal) in
+          
+          var images: [UIImage]  = [];
+          var assets: [PHAsset] = [];
+          for (index,result) in results.enumerated() {
+              images.append(result.image);
+              assets.append(result.asset);
+          }
         var resArr = [[String: StringOrInt]]();
         let manager = PHImageManager.default();
         let options = PHVideoRequestOptions();
@@ -111,7 +118,7 @@ public class SwiftImagesPickerPlugin: NSObject, FlutterPlugin {
       let camera = ZLCustomCamera();
 //      let cameraConfig = ZLCameraConfiguration();
       let config = ZLPhotoConfiguration.default();
-      config.maxRecordDuration = maxTime ?? 15;
+//      config.maxRecordDuration = maxTime ?? 15;
       self.setLanguage(configuration: config, language: language);
       self.setConfig(configuration: config, pickType: pickType);
       if cropOption != nil {
@@ -465,38 +472,38 @@ public class SwiftImagesPickerPlugin: NSObject, FlutterPlugin {
   }
   
   private func setLanguage(configuration: ZLPhotoConfiguration, language: String) {
-    switch language {
-    case "Language.Chinese":
-      configuration.languageType = .chineseSimplified;
-      break;
-    case "Language.ChineseTraditional":
-      configuration.languageType = .chineseTraditional;
-      break;
-    case "Language.English":
-      configuration.languageType = .english;
-      break;
-    case "Language.Japanese":
-      configuration.languageType = .japanese;
-      break;
-    case "Language.French":
-      configuration.languageType = .french;
-      break;
-    case "Language.Korean":
-      configuration.languageType = .korean;
-      break;
-    case "Language.German":
-      configuration.languageType = .german;
-      break;
-    case "Language.Vietnamese":
-      configuration.languageType = .vietnamese;
-      break;
-    default:
-      configuration.languageType = .system;
-    }
+//    switch language {
+//    case "Language.Chinese":
+//      configuration.languageType = .chineseSimplified;
+//      break;
+//    case "Language.ChineseTraditional":
+//      configuration.languageType = .chineseTraditional;
+//      break;
+//    case "Language.English":
+//      configuration.languageType = .english;
+//      break;
+//    case "Language.Japanese":
+//      configuration.languageType = .japanese;
+//      break;
+//    case "Language.French":
+//      configuration.languageType = .french;
+//      break;
+//    case "Language.Korean":
+//      configuration.languageType = .korean;
+//      break;
+//    case "Language.German":
+//      configuration.languageType = .german;
+//      break;
+//    case "Language.Vietnamese":
+//      configuration.languageType = .vietnamese;
+//      break;
+//    default:
+//      configuration.languageType = .system;
+//    }
   }
   
   private func setThemeColor(configuration: ZLPhotoConfiguration, colors: NSDictionary?) {
-    let theme = ZLPhotoThemeColorDeploy();
+//    let theme = ZLPhotoThemeColorDeploy();
 //    configuration.themeColorDeploy = theme;
   }
 }
